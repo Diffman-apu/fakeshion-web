@@ -1,0 +1,52 @@
+.login {
+    height: 100%;
+    // padding: 0 10px;
+    
+    .adm-nav-bar {
+        padding: 10px;
+        border-bottom: 1px solid #999;
+
+        .adm-nav-bar-title {
+            font-weight: 600;
+        }
+    }
+
+    .form {
+        margin: 100px auto;
+        padding: 0 50px;
+        text-align: center;
+
+
+        .logo {
+            height: 40px;
+        }
+        span {
+            font-size: 16px;
+        }
+        .form-item {
+            margin: 10px 0;
+            display: flex;
+            
+
+            input {
+                flex: 1;
+                border: 0;
+                border-bottom: 1px solid black;
+                padding: 0 3px;
+            }
+        }
+        .form-btn {
+            background-color: green;
+            text-align: center;
+            padding: 3px 0;
+            margin: 0 5px;
+            font-size: 16px;
+            border-radius: 3px;
+        }
+        .link {
+            margin-top: 20px;
+            text-align: right;
+    }
+    }
+    
+}

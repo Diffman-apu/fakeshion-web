@@ -1,0 +1,104 @@
+.notifyBar {
+    height: 100%;
+    width: 100%;
+    padding: 0 20px;
+    padding-top: 60px;
+
+    .menu-title {
+        padding: 10px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 50px;
+        line-height: 30px;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #999;
+
+        .adm-nav-bar-back {
+            font-size: 16px;
+        }
+        .adm-nav-bar-title {
+            font-weight: 600;
+        }
+
+    }
+    .adm-search-bar {
+        --background: rgb(221, 221, 221);
+    }
+}
+
+.notify-item {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #292c33;
+
+    .left {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+        flex: 0;
+    
+        img {
+            height: 40px;
+            width: 40px;
+            border-radius: 3px;
+            // padding: 2px;
+        }
+    
+        .notify {
+            width: 10px;
+            height: 10px;
+            line-height: 10px;
+            border-radius: 100%;
+            font-size: 10px;
+            font-weight: bolder;
+            text-align: center;
+            color: #fff;
+            background-color: red;
+            position: absolute;
+            right: -5px;
+            top: -3px;
+        }
+        
+    }
+    .middle {
+        flex: 1;
+
+        .name {
+            font-size: 18px;
+            color: #000;
+            font-weight: 500;
+            margin-bottom: 1px;
+        }
+        .content {
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        .time {
+            font-size: 12px;
+            color: #999;
+        }
+    }
+
+    .right {
+        // flex: 0;
+        img {
+            height: 40px;
+            width: 40px;
+        }
+        .adm-button {
+            font-size: 14px;
+        }
+        
+    }
+}
+
+.notify-item.selectedNotification {
+    background-color: #999;
+}
