@@ -18,7 +18,7 @@ const postSchema = new mongoose.Schema({
     },
     imageURL: {
         type: String,
-        default: 'https://inst-clone.oss-cn-beijing.aliyuncs.com/postImages/default.jpg'
+        default: 'https://xxxx.oss-cn-beijing.aliyuncs.com/postImages/default.jpg'
     },
     commentsCount: {
         type: Number,

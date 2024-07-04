@@ -35,7 +35,7 @@ app.use("/notifications", notificationsRoutes);
 app.use("/search", searches);
 
 // const PORT = process.env.PORT || 3000;
-mongoose.connect('mongodb://127.0.0.1:27017/ins_clone')
+mongoose.connect('mongodb://127.0.0.1:27017/fakeshion')
     .then(() => app.listen(4000, () => console.log(`Server running on port: 4000`)))
     .catch((error) => console.log(error.message));
 

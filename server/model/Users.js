@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
     },
     avatar: {
         type: String,
-        default: 'https://inst-clone.oss-cn-beijing.aliyuncs.com/avatars/default.png'
+        default: 'https://xxxx.oss-cn-beijing.aliyuncs.com/avatars/default.png'
     },
     followerCount: {
         type: Number,
