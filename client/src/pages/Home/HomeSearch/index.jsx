@@ -1,11 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Register from '../../Auth/Register'
 import { Grid, SearchBar } from 'antd-mobile'
 import './index.scss'
 import { connect, useDispatch } from 'react-redux'
 import { getAvatarsBySearch, getDetailsBySearch, getSearchKeys, getSearchSimples, getUser } from '../../../redux/actions/user'
-import { CloseOutline } from 'antd-mobile-icons'
-import { fetchSearchKeys } from '../../../api'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import Recommends from './Recommends'
 import Actions from './Actions'
@@ -48,7 +45,6 @@ function HomeSearch(props) {
   function onBackArrow(){
     setIsFocus(false)
     dispatch({type: USER_SEARCH_INPUT_CHANGE, data: null})
-    console.log("-------------", searchBarRef.current)
     searchBarRef.current.clear()
     navigate('/home/homeSearch')
   }

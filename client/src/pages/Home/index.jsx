@@ -22,7 +22,6 @@ function Bottom( props ) {
 
     function setRouteActive(value) {
         navigate(value, { replace: false })
-        // console.log("currentUser", currentUser)
     }
 
     const tabs = [

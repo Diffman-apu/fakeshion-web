@@ -5,7 +5,6 @@ import { Avatar, Button, Mask } from 'antd-mobile'
 import { connect, useDispatch } from 'react-redux'
 import Share from '../../Message/Share'
 import Comment from './Comment'
-import * as api from '../../../api'
 import { USER_STATE_CHANGE } from '../../../redux/constants'
 import { userWsContext } from '../../../App'
 import { stringify, TypeMap, RetinaRegex } from "../../../util";
@@ -23,7 +22,6 @@ function HomeIndex(props) {
     const feedsRef = useRef()
     const dispatch = useDispatch()
     const {pathname} = useLocation()
-    console.log("AAAAAAAAAAAAAAAA", useLocation())
 
     const isLogged = props.currentUser ? true : false
 
@@ -47,7 +45,6 @@ function HomeIndex(props) {
                     return { ...post, user }
                 }
             })
-            console.log("newFeeds:", newFeeds)
             setFeeds(newFeeds)
         }
 

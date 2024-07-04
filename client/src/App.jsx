@@ -78,7 +78,6 @@ function App(props) {
           unReadMsgCnt = unReadMsgCnt + chat.unreadMsgCnt
         }
       }
-      console.log("========================", unReadMsgCnt)
       dispatch({ type: USER_UNREAD_MSG_CNT_CHANGE, data: unReadMsgCnt })
     }
 

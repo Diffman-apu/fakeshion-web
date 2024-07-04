@@ -4,7 +4,6 @@ import { connect, useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { CloseOutline } from 'antd-mobile-icons'
 import { deleteSearchKey, getDetailsBySearch, getUser, updateSearchKeys } from '../../../../redux/actions/user'
-import { USER_SEARCH_INPUT_CHANGE } from '../../../../redux/constants'
 
 function Actions(props) {
 
@@ -86,7 +85,6 @@ function Actions(props) {
     function renderSearchItem(item) {
         if (!item) return
         const { type } = item
-        console.log("=====================", item)
 
         if (type === 'text') {
             return (

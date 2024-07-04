@@ -31,12 +31,6 @@ class Ws {
       const data = parse(event.data);
       console.log("客户端接收服务端发送的消息类型: ", map.get(data.type.toString()))
       switch (map.get(data.type.toString())) {
-        // case 'UPDATE_MESSAGE_LIST':
-        //   updateMEssageList(data);
-        //   break;
-        // case 'UPDATE_CHAT_LIST':
-        //   updateChatList(data);
-        //   break;
         case 'BROADCAST_MESSAGE':
           receiveMessage(data);
           break;
@@ -116,25 +110,6 @@ class Ws {
     const userInfo = store.getState().userState.currentUser;
     return userInfo?.id ? userInfo : undefined;
   }
-}
-
-
-
-// 更新消息列表
-const updateMEssageList = (data) => {
-  store.dispatch({
-    type: 'UPDATE_MESSAGE_LIST',
-    messageList: data.data,
-  });
-}
-
-// 更新消息列表
-const updateChatList = (data) => {
-  console.log("返回的chatlist是:", data.data)
-  store.dispatch({
-    type: USER_CHATS_STATE_CHANGE,
-    data: data.data,
-  });
 }
 
 

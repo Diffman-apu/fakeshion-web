@@ -6,7 +6,6 @@ import PostFeeds from '../../../HomeIndex/PostFeeds'
 import { getUser } from '../../../../../redux/actions/user'
 import Comment from '../../../HomeIndex/Comment'
 import Share from '../../../../Message/Share'
-import { userWsContext } from '../../../../../App'
 
 
 function RecommendFeeds(props) {
@@ -16,7 +15,6 @@ function RecommendFeeds(props) {
     const gridRef = useRef()
     const dispatch = useDispatch()
     const {pathname} = useLocation()
-    console.log("BBBBBBBBBBBBB", useLocation())
 
 
 
@@ -25,7 +23,6 @@ function RecommendFeeds(props) {
             const idx = props.feeds.findIndex((post)=>post._id === state.postId)
             
             if(idx>-1 && gridRef.current){
-                console.log("bbbbbbbbbbbbbbb ", gridRef)
                 gridRef.current.scrollToRow(idx)
             }
         }
@@ -37,14 +34,12 @@ function RecommendFeeds(props) {
                 const user = props.users?.find((user) => user._id === post.creatorId)
 
                 if (user === undefined) {
-                    console.log("MMMMMMMM", post)
                     dispatch(getUser(post.creatorId))
                 }
                 else {
                     return { ...post, user }
                 }
             })
-            console.log("XXXXX RecommendFeeds 中 newFeeds:", newFeeds)
             setFeeds(newFeeds)
         }
 

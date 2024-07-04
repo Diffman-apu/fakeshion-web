@@ -4,14 +4,10 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Avatar, Button, Input, NavBar, Space } from 'antd-mobile'
 import { connect, useDispatch } from 'react-redux'
 import { AutoSizer, CellMeasurer, CellMeasurerCache, List } from 'react-virtualized'
-import * as api from '../../../api'
-import { USERS_ADD_CHANGE, USERS_STATE_CHANGE, USER_CHAT_STATE_CHANGE } from '../../../redux/constants'
 import { userWsContext } from '../../../App'
 import { RetinaRegex, TypeMap, stringify, timeFmtForMsg } from '../../../util'
 import { getChat, sendMsg } from '../../../redux/actions/chats'
 import { getUser } from '../../../redux/actions/user'
-// import "emoji-mart/css/emoji-mart.css";
-// import { Picker } from 'emoji-mart'
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
 
@@ -40,8 +36,6 @@ function Conversation(props) {
   const autoSizerRef = useRef()
   const dispatch = useDispatch()
 
-  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA  Conversation组件执行了~~", autoSizerRef?.current?.state.height, listContainer.current)
-
 
   useEffect(() => {
     dispatch(getChat(otherUserId))
@@ -63,7 +57,6 @@ function Conversation(props) {
   // 获取历史消息
   useEffect(() => {
     if (props.currentChat) {
-      console.log("当前 chat 为：", props.currentChat)
       const { messages, _id } = props.currentChat
       const messageList = messages.map((msg) => {
         const tag = msg.tag === 'msg'
@@ -80,23 +73,14 @@ function Conversation(props) {
 
 
   useEffect(() => {
-    console.log("BBBBBBBBBBBBBBBB listContainer发生变化了", listContainer.current)
     if (chat) {
       listContainer.current.scrollToRow(-1)
     }
 
   }, [chat, listContainer])
 
-  // useEffect(()=>{
-  //   if(showEmojiBox || showPlaceHolder){
-  //     console.log("=========================")
-  //     listContainer.current.scrollToRow(-1)
-  //   }
-  // },[showEmojiBox, showPlaceHolder ])
-
 
   useEffect(() => {
-    console.log("CCCCCCCCCCCCCCCCCCCC", autoSizerRef?.current?.state.height)
     if(showEmojiBox && listContainer.current){
       listContainer.current.scrollToRow(-1)
     }
@@ -120,7 +104,6 @@ function Conversation(props) {
 
 
   function onClickEmojiBtn() {
-      console.log("$$$$$$$$$$$$===============", listContainer.current.Grid)
       placeholderRef.current.style.display = 'block'
       setShowEmojiBox(true)
   
@@ -128,14 +111,12 @@ function Conversation(props) {
 
 
   function onClickOutside(event) {
-    console.log("是否相等：", inputRef.current.nativeElement, event.target)
     if (!pickerRef.current?.contains(event.target) 
         && !emojiRef.current?.contains(event.target)
         && !footerRef.current?.contains(event.target)
         
       ) {
       if (showEmojiBox) {
-        console.log("这里点击了",  )
         placeholderRef.current.style.display = 'none'
         setShowEmojiBox(false);
         // setShowPlaceHolder(false)
@@ -193,7 +174,6 @@ function Conversation(props) {
 
   const cache = new CellMeasurerCache({
     defaultHeight: 100,
-    // minWidth: 75,
     fixedWidth: true
   });
 
@@ -286,12 +266,25 @@ function Conversation(props) {
                *              故尝试在autosizer之前的节点设置回调均不生效，这里选择在autosizer节点处设置一个异步任务，因为要等同步任务中 height传递完成：autosizer=>List=>Grid(props:{width, height})，
                *              此时 Grid的 containerSize 才是更新后的 height, 进而更新scrollToRow(-1)的scrollTop。
                */
-              if(autoSizerRef.current?.state.height === 367){  
-                // setTimeout(() => {
-                //   listContainer.current.scrollToRow(-1)
-                // });
+            
+              /**
+               * 解决方式 ①
+               *  setTimeout(() => {
+               *      listContainer.current.scrollToRow(-1)
+               *  });     
+               */
+
+              /**
+               * 解决方式 ②
+               */
+              if(autoSizerRef.current?.state.height === 567 && flag){    
+                setFlag(false)   // 567px, 367px分别为输入框上弹前后可视区域的大小
+              }
+
+              if(autoSizerRef.current?.state.height === 367 && !flag){  
                 setFlag(true)
               }
+
               return (
               <List
                 width={width}

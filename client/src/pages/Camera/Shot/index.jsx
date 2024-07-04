@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import './index.scss'
 import { NavBar } from 'antd-mobile';
 import { CloseOutline, CheckOutline, RightOutline } from 'antd-mobile-icons'
-import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 
 
 export default function Shot() {

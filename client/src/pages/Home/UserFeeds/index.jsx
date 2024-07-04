@@ -5,19 +5,10 @@ import { Avatar, Button, Mask } from 'antd-mobile'
 import { connect, useDispatch } from 'react-redux'
 import Share from '../../Message/Share'
 import Comment from '../HomeIndex/Comment'
-import { Modal } from 'antd-mobile'
 import { userWsContext } from '../../../App'
-import { stringify, TypeMap, RetinaRegex } from "../../../util";
-import { AutoSizer, CellMeasurer, CellMeasurerCache, List } from 'react-virtualized'
 import { followUser, getUser, sendNotification } from '../../../redux/actions/user'
-import { likePost } from '../../../redux/actions/posts'
 import PostFeeds from '../HomeIndex/PostFeeds'
 
-
-const map = new TypeMap().map;
-
-
-// const history = createBrowserHi
 
 function UserFeeds(props) {
     const navigate = useNavigate()
@@ -30,10 +21,6 @@ function UserFeeds(props) {
     const gridRef = useRef()
     const dispatch = useDispatch()
     const {pathname} = useLocation()
-
-
-    console.log("CCCCCCCCCCCCCCCCC", useLocation())
-
 
 
     useEffect(() => {

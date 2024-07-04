@@ -4,15 +4,12 @@ import { AutoSizer, CellMeasurer, CellMeasurerCache, List } from 'react-virtuali
 import './index.scss'
 import { connect, useDispatch } from 'react-redux'
 import { timeDifference } from '../../../../util'
-import * as api from '../../../../api'
-import { USERS_ADD_CHANGE, USERS_POST_COMMENT_STATE_CHANGE, USERS_POST_LIKE_STATE_CHANGE, USERS_STATE_CHANGE } from '../../../../redux/constants'
 import { userWsContext } from '../../../../App'
 import { RetinaRegex, TypeMap, stringify } from '../../../../util'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { getUser, sendNotification } from '../../../../redux/actions/user'
 import { commentPost, getPost } from '../../../../redux/actions/posts'
 
-const map = new TypeMap().map;
 
 
 function Comment(props) {
@@ -41,12 +38,6 @@ function Comment(props) {
     }
   }, [props.currentPost])
 
-
-  useEffect(() => {
-    console.log("comment组件挂载~~~~~~~~~~~~~~~~~~~~~~~~")
-  }, [])
-
-
   useEffect(() => {
     if (props.currentPost) {
       const newComments = props.currentPost.comments.map((comment) => {
@@ -59,14 +50,12 @@ function Comment(props) {
         }
       })
 
-      console.log("当前 comments为：", newComments)
       setCommentList(newComments)
     }
   }, [props.users, props.currentPost])
 
   useEffect(() => {
     if (state && state.commentId && commentList && selectedCmtId !== 'invalid') {
-      console.log("***********************8", state)
       const idx = commentList.findIndex((item) => item?._id === state.commentId)
       commentListRef.current.scrollToRow(idx)
 

@@ -12,7 +12,6 @@ const PostFeeds = forwardRef((props, gridRef) => {
 
     const navigate = useNavigate()
     const { data: feeds, userId, pathName} = props
-    console.log("cccccccccccccccccccccccccccccccc", gridRef)
 
     const userWs = useContext(userWsContext)
     const dispatch = useDispatch()
@@ -83,7 +82,6 @@ const PostFeeds = forwardRef((props, gridRef) => {
             return;
         }
         const path = pathName.split('/').splice(1,2).join('/')
-        console.log("AAAAAAA", path)
         navigate(`/${path}/comments/${post._id}`)
     }
 

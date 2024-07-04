@@ -30,13 +30,11 @@ export const sendNotification = async (req, res) => {
 }
 
 export const updateNotification = async (req, res) => {
-    console.log("=====================")
     const {id: noteId} = req.params
     if (!req.userId) {
         return res.json({ message: "当前登陆状态错误，请检查！" });
     }
     try {
-        // const notifyObj = req.body
         const notification = await Notifications.findById(noteId)
         notification.isRead = true
 

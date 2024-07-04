@@ -1,27 +1,11 @@
 import Posts from "../model/Posts.js";
 import mongoose from "mongoose";
-import { Mint } from "mint-filter";
-
-const mint = new Mint(["fucking"]);
-// let veryfyRes1 = mint.verify("Amazing");
-// let veryfyRes2 = mint.verify("fucking bad");
-// console.log(veryfyRes1, veryfyRes2);
 
 export const getPosts = async (req, res) => {
-    console.log("客户端发起请求posts了！！")
 
-    const { page } = req.query;
     try {
         const posts = await Posts.find({}, { comments: 0 }).sort({ createTime: -1 });
         return res.status(200).json(posts)
-        /**
-         * const LIMIT = 8;
-        const startIndex = (Number(page) - 1) * LIMIT;
-        const total = await PostMessage.countDocuments({});
-        const postMessages = await PostMessage.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
-        // res.status(200).json({ data: postMessages, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT) });
-
-         */
     } catch (error) {
         return res.status(404).json({ message: error.message });
     }
@@ -65,7 +49,6 @@ export const createPost = async (req, res) => {
     }
 
     try {
-        console.log("#################")
         const post = req.body;
         const newPost = await Posts.create({ ...post, createTime: new Date().toISOString() });
         res.status(200).json(newPost);

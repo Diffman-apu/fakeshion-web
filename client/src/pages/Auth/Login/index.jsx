@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import * as API from '../../../api'
-import { USER_STATE_CHANGE } from '../../../redux/constants'
-import Ws from '../../../socket'
 import './index.scss'
 import { useDispatch } from 'react-redux'
 import { NavBar, Toast } from 'antd-mobile'

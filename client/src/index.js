@@ -20,7 +20,6 @@ root.render(
 );
 
 store.subscribe(() => {
-  console.log("store状态变化导致 重新渲染了, 此时 store值为：", store.getState())
   root.render(
     // <React.StrictMode>
       <BrowserRouter>

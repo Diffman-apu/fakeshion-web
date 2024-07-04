@@ -22,7 +22,6 @@ export const updateSearchKeys = async (req, res) => {
     try {
         const {type, content} = req.body
         const result = await SearchKeys.findOne({content})
-        console.log("*******", result, type, content )
         if(result){
             await SearchKeys.updateOne({content}, {$set: {createTime: new Date().toISOString()}})}
         else{
@@ -62,7 +61,6 @@ export const getAvatarsBySearch = async (req, res) => {
             { _id: 1, username: 1, description: 1, followerCount: 1, avatar: 1 }
         ).sort({username: 1}).limit(10)
 
-        console.log("--------searchResults", searchResults)
         return res.status(200).json(searchResults)
     } catch (error) {
         return res.status(404).json({ message: error.message });

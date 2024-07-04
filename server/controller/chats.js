@@ -4,7 +4,6 @@ import Chats from "../model/Chat.js";
 export const getChat = async (req, res) => {
     const { id } = req.params
     if (!req.userId) {
-        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         return res.json({ message: "当前登陆状态错误，请检查！" });
     }
 
@@ -17,7 +16,6 @@ export const getChat = async (req, res) => {
                 chat.unreadMsgCnt = 0
             }
             const updatedChat = await Chats.findByIdAndUpdate(chat._id, chat, { new: true });
-            console.log("^^^^^^^^^^^^^^^^^^", updatedChat)
             return res.status(200).json(updatedChat)
         }
         else {
@@ -35,7 +33,6 @@ export const getChats = async (req, res) => {
     }
     try {
         const chats = await Chats.find({ users: { $in: [req.userId]} }, {messages: 0}).sort({ lastMessageTime: -1 });
-        console.log("****************************", chats)
         return res.status(200).json(chats)
     } catch (error) {
         return res.status(404).json({ message: error.message });

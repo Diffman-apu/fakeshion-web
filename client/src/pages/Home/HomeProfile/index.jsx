@@ -3,17 +3,12 @@ import './index.scss'
 import { Button, Grid, Skeleton } from 'antd-mobile'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { connect, useDispatch } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { changeUserAction, changeUserPostsAction } from '../../../redux/actions'
-import * as api from '../../../api'
-import { USERS_ADD_CHANGE, USER_FOLLOWINGS_STATE_CHANGE, USER_POSTS_STATE_CHANGE } from '../../../redux/constants'
 import Login from '../../Auth/Login'
 import { TypeMap, stringify } from '../../../util'
 import { userWsContext } from '../../../App'
 import { getUserPosts } from '../../../redux/actions/posts'
 import { followUser, getUser, sendNotification } from '../../../redux/actions/user'
 
-const map = new TypeMap().map;
 
 function HomeProfile(props) {
     const [user, setUser] = useState(null)

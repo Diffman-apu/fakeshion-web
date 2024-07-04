@@ -1,16 +1,13 @@
 import React, { useState, useEffect, useContext, useRef, createContext, useCallback } from "react";
 import { connect, useDispatch } from "react-redux";
 import { TypeMap, stringify, timeDifference, timeFmtForMsg, timeFormat } from "../../../util";
-import * as api from '../../../api'
 import './index.scss'
-import { LIVE_NOTIFICATION_CHANGE, USERS_ADD_CHANGE, USER_FOLLOWINGS_STATE_CHANGE, USER_NOTIFICATIONS_STATE_CHANGE, USER_POSTS_STATE_CHANGE } from "../../../redux/constants";
 import { useNavigate } from "react-router-dom";
 import { Button, NavBar } from "antd-mobile";
 import { userWsContext } from "../../../App";
 import { followUser, getNotifications, getUser, sendNotification, updateNotification } from "../../../redux/actions/user";
 import { getUserPosts } from "../../../redux/actions/posts";
 
-const map = new TypeMap().map;
 
 const NotificationBar = (props) => {
 
@@ -48,29 +45,18 @@ const NotificationBar = (props) => {
             let isFollowing
             if (notification.type === 'follow') {
                 isFollowing = props.followings.some((id) => id === notification.relatedUid)
-                console.log("&&&&&&&&&&&&&&&&&&&&&&:", isFollowing, notification.relatedUid, props.followings)
             }
             return { ...notification, relatedUser, relatedPost, isFollowing }
         })
 
-        console.log("最新的chatlist:", list)
         setNotificationList(list)
     }, [props.notifications, props.users, props.userPosts, props.followings])
 
-
-    // useEffect(() => {
-    //     if (selectedChat) {
-    //         setTimeout(() => {
-    //             navigate(`/conversation/${selectedChat.otherUser._id}`)
-    //         }, 100)
-    //     }
-    // }, [selectedChat])
 
     // 点击 通知项 时
     function onClickNotify(notification) {
         setSelectedNotification(notification)
         const { type, uid, relatedUid, relatedUser, relatedPostId, relatedCommentId, _id } = notification
-        console.log("================", notification)
         dispatch(updateNotification(_id, { isRead: true }))
 
         setTimeout(() => {
@@ -128,8 +114,6 @@ const NotificationBar = (props) => {
     return (
         <div className="notifyBar">
             <NavBar back='返回' onBack={()=>navigate(-1)} className="menu-title">我的通知</NavBar>
-            {/* <i className='iconfont icon-arrow-left' onClick={() => navigate(-1)}></i> */}
-            {/* <h2 className="menu-title">我的通知</h2> */}
             <ul className="notify-list">
                 {
                     notificationList.map(
@@ -138,7 +122,6 @@ const NotificationBar = (props) => {
                             const { _id, relatedUser, relatedPost, content, createTime, isRead, type, isFollowing, relatedUid } = item
                             const lastMsgTs = new Date(createTime).getTime()
                             const timeStr = timeDifference(lastMsgTs, curTs)
-                            console.log("notify为：", item )
 
                             return (
                                 <li key={index} id={index} className={`notify-item ${_id === selectedNotification?._id ? 'selectedNotification' : ''}`} onClick={() => onClickNotify(item)}>

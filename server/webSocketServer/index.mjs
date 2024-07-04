@@ -4,7 +4,6 @@ import { parse, stringify, Type } from "../util/index.js";
 import url from 'url'
 import Chats from "../model/Chat.js";
 import Users from "../model/Users.js";
-import Notifications from "../model/Notifications.js";
 
 const wss = new WebSocketServer({ port: 8080 });
 let wsMap = new Map();
@@ -38,8 +37,6 @@ const sendNotification = async (ws, data) => {
   const newNotify = { ...data, creator }
 
   const receiveWs = wsMap.get(receiverId)
-  console.log("接收到的通知为", data)
-  console.log("接收者 ws为：", wsMap)
 
 
   // 转发最新通知 给消息接收者

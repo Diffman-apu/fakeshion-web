@@ -64,7 +64,6 @@ export function userReducer(preState = initState, action) {
             }
 
         case USER_FOLLOWINGS_STATE_CHANGE:
-            console.log("reducer中添加 userFollowings")
             return { ...preState, followings: data }
         case USER_FOLLOWING_STATE_CHANGE:
             const idx = preState.followings.findIndex((item) => item._id === data._id)

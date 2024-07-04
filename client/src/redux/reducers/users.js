@@ -49,7 +49,6 @@ export function usersReducer(preState = initState, action) {
                 )
             }
         case USERS_POST_ATTR_STATE_CHANGE:
-            console.log("USERS_POST_ATTR_STATE_CHANGE修改了")
             return {
                 ...preState, feeds: preState.feeds.map(post => (
                     post.id === data.id

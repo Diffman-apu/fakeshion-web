@@ -4,7 +4,6 @@ import { USER_STATE_CHANGE } from "../constants";
 
 export const signIn = (formData, navigate) => async (dispatch) => {
     try { 
-        console.log("登录操作~~")       
         const { data } = await api.signIn(formData);
         localStorage.setItem('profile', JSON.stringify(data));
         dispatch({ type: USER_STATE_CHANGE, data: data.result });
@@ -13,7 +12,6 @@ export const signIn = (formData, navigate) => async (dispatch) => {
         if(error.response){
             Toast.show({content: error.response.data.message})
         }
-        console.log("登录过程出现错误了，原因是：", error);
     }
 };
 
@@ -27,6 +25,5 @@ export const signUp = (formData, navigate) => async (dispatch) => {
         if(error.response){
             Toast.show({content: error.response.data.message})
         }
-        console.log("注册过程出现错误了，原因是：", error);
     }
 };

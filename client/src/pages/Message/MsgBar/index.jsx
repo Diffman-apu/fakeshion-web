@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { connect, useDispatch } from "react-redux";
-import store from "../../../redux/store";
 import { timeFormat } from "../../../util";
 import './index.scss'
 import { useNavigate } from "react-router-dom";
@@ -32,7 +31,6 @@ const MsgBar = (props) => {
 
 
     useEffect(() => {
-        console.log("props.chats", props.chats)
         const list = props.chats.map((chat) => {
             let otherUserId;
             if (chat.users[0] === props.currentUser._id) {
@@ -51,7 +49,6 @@ const MsgBar = (props) => {
             }
         })
 
-        console.log("最新的chatlist:", list)
         setChatList(list)
     }, [props.chats, props.users, props.currentUser])
 

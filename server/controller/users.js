@@ -25,7 +25,6 @@ export const signIn = async (req, res) => {
 
 export const signUp = async (req, res) => {
     const { email, phoneNumber, password, confirmPwd } = req.body;
-    console.log("后端 注册 函数调用了~~~")
     try {
         const existingUser = await Users.find({ $or: [{ phoneNumber: phoneNumber }, { email: email }] });
         console.log("服务端注册返回值：", existingUser)
@@ -47,10 +46,6 @@ export const signUp = async (req, res) => {
 }
 
 export const getUser = async (req, res) => {
-    console.log("333333333333")
-
-    console.log("客户端发起请求user了！！")
-
     const { id } = req.params;
     try {
         const user = await Users.findById(id);
@@ -61,10 +56,7 @@ export const getUser = async (req, res) => {
 }
 
 export const getUsers = async (req, res) => {
-    console.log("2222222222")
 
-    console.log("客户端发起请求users了！！")
-    // const { id } = req.params;
     try {
         const users = await Users.find();
         return res.status(200).json(users);
@@ -89,7 +81,6 @@ export const followUser = async (req, res) => {
             user.followings = user.followings.filter(id => id !== followingId)
             user.followingCount = user.followingCount - 1
         }
-        console.log("@@@@@@@@ ", followingId, user.followings)
         const newUser = await Users.findByIdAndUpdate(req.userId, user, { new: true })
         return res.status(200).json(newUser);
     } catch (error) {

@@ -6,7 +6,6 @@ const map = new TypeMap().map;
 export const getChat = (id) => async (dispatch) => {
     try {
         const { data } = await api.fetchChat(id)
-        console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 服务端返回的chat为：", data)
         dispatch({
             type: USER_CHAT_STATE_CHANGE,
             data: data,
@@ -19,7 +18,6 @@ export const getChat = (id) => async (dispatch) => {
 export const getChats = () => async (dispatch) => {
     try {
         const { data: chats } = await api.fetchChats()
-        console.log("服务端返回的chats是：", chats)
         dispatch({
             type: USER_CHATS_STATE_CHANGE,
             data: chats,
